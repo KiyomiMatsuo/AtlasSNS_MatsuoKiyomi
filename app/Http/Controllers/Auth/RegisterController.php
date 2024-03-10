@@ -46,13 +46,20 @@ class RegisterController extends Controller
             $mail = $request->input('mail');
             $password = $request->input('password');
 
+            //↓ユーザーの新規登録処理にバリデーション処理を実装
+            $validated = $request->validate([
+                'username' => ['required', 'string', 'min:2' , 'max:12'],
+                'mail' => ['required', 'string', 'email', 'min:5' , 'max:40', 'unique:users'],
+                'password' => ['required', 'string', 'alpha_num' , 'min:8', 'max:20' , 'confirmed'],
+            ]);
+
             User::create([
                 'username' => $username,
                 'mail' => $mail,
                 'password' => bcrypt($password),
             ]);
 
-            return redirect('added');
+            return redirect('added')->with('username', $username);  //->with()を使うことでセッションが定義される
         }
         return view('auth.register');
     }
