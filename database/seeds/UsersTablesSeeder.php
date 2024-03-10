@@ -14,7 +14,7 @@ class UsersTablesSeeder extends Seeder
         //usersテーブルにユーザーを追加する
         DB::table('users')->insert([
             ['username' => 'Atlas一郎',
-            'mail' => 'atlassns@gmail',
+            'mail' => 'atlassns@gmail.com',
             'password' => bcrypt('12345678'),  //bcrypt()で暗号化
             'bio' => '',]
             ]);
