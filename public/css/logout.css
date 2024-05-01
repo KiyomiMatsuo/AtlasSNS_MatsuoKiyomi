@@ -1,10 +1,47 @@
 @charset "UTF-8";
 
-html{
+html {
     height: 100%;
 }
 
-body{
-    height: 100%;
-    background: #186AC9;
+body {
+    color: #fff;
+    font-family: 'Meiryo UI', 'Yu Gothic UI';
+    height: 100vh;
+    background-color: #D9AFD9;
+    background-image: linear-gradient(0deg, #FFD700 0%, #1E90FF 100%);
+    padding: 50px 0;
+}
+
+.Atlas {
+    width: 20%;
+    height: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.logo {
+    width: 160px;
+}
+
+.sns {
+    font-family: "Verdana";
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+#container {
+    margin-bottom: 20px;
+    background-color: #6969694D;
+}
+
+label,
+input {
+    margin: 0 auto;
+    display: block;
+}
+
+label {
+    width: 3rem;
+    margin: 0 auto 0 3.5rem;
 }
