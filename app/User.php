@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //「１対多」の「多」側 → メソッド名は複数形でhasManyを使う
+    public function posts(){
+        return $this->hasMany('App\Post');
+    }
 }
