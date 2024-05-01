@@ -30,13 +30,19 @@ Route::get('/added', 'Auth\RegisterController@added');
 Route::post('/added', 'Auth\RegisterController@added');
 
 //ログイン中のページ
-Route::group(['middleware' => ['loginUserCheck']], function() {
+Route::group(['middleware' => 'auth'], function() {
 Route::get('/top','PostsController@index');
 
 Route::get('/profile','UsersController@profile');
+
+//投稿フォーム画面へ移動するリンクの実装
+Route::post('/post/create','PostsController@postCreate');
 
 Route::get('/search','UsersController@index');
 
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
+
+Route::get('/logout','Auth\LoginController@logout');
+
 });
