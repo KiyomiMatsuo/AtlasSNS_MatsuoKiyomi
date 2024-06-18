@@ -38,7 +38,18 @@ Route::get('/profile','UsersController@profile');
 //投稿フォーム画面へ移動するリンクの実装
 Route::post('/post/create','PostsController@postCreate');
 
-Route::get('/search','UsersController@index');
+//投稿を編集するためのルーティング
+Route::get('/top/edit','PostsController@edit');
+//ブラウザに表示されない、更新処理だけを行う用のルーティング
+Route::post('/top/edit','PostsController@update');
+
+//投稿の削除処理を行うためのルーティング
+Route::get('/post/{id}/delete', 'PostsController@delete');
+//ブラウザに表示されない、更新処理だけを行う用のルーティング
+Route::post('/post/delete', 'PostsController@delete');
+
+//検索ページへ移動するためのルーティング
+Route::get('/search','UsersController@search');
 
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');

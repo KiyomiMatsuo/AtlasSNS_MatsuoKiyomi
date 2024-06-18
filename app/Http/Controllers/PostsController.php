@@ -11,7 +11,8 @@ class PostsController extends Controller
 {
     public function index(){
         $posts = Post::get();
-        return view('posts.index',['posts'=>$posts]);
+        $user = Auth::user();
+        return view('posts.index',['posts'=>$posts,'user'=>$user]);
     }
 
     //投稿の処理
@@ -23,5 +24,32 @@ class PostsController extends Controller
             'user_id' => Auth::id()  //user_idの中に現在認証しているユーザーのIDを取得
         ]);
         return back();
+    }
+
+    //投稿の編集
+    public function edit($id){
+        $post = Post::where('id',$id)->first();
+        return view('posts.edit',['post'=>$post]);
+    }
+
+    //更新処理をするための実装
+    public function update(Request $request)
+    {
+        // 1つ目の処理
+        $id = $request->input('id');
+        $up_post = $request->input('upPost');
+        // 2つ目の処理
+        Post::where('id', $id)->update([
+              'post' => $up_post,
+        ]);
+        // 3つ目の処理
+        return redirect('/top');
+    }
+
+    //投稿の削除処理をするための実装
+    public function delete($post)
+    {
+        Post::where('post', $post)->delete();
+        return redirect('/top');
     }
 }
