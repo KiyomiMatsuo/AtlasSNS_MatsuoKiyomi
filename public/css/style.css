@@ -30,8 +30,14 @@ header {
 }
 
 .atlas-logo {
-    width: 160px;
+    display: inline-block;
+    margin: 10px, 0, 0, 10px;
+}
 
+.atlas-logo img {
+    width: 100%;
+    height: 60px;
+    object-fit: contain;
 }
 
 #head {
@@ -78,7 +84,6 @@ header {
 .menu {
     position: absolute;
     top: 60px;
-    width: 100%;
     opacity: 0;
     transition: .3s ease-in-out;
     pointer-events: none;
@@ -125,9 +130,47 @@ header {
     display: flex;
 }
 
-.post-send {
-    width: 50px
+.send-btn {
+    width: 45px;
+    border-radius: 5px;
 }
+
+.edit-btn,
+.trash-btn {
+    width: 30px
+}
+
+.search-btn {
+    width: 50px;
+    border-radius: 3px;
+    object-fit: cover;
+}
+
+/* 削除ボタン */
+/* 画像の親要素のスタイル */
+.box {
+    cursor: pointer;
+    position: relative;
+}
+
+/* 画像のスタイル */
+.box img {
+    height: auto;
+    left: 0;
+    position: absolute;
+}
+
+.box img:last-of-type {
+    opacity: 0;
+    transition: opacity .7s;
+}
+
+.box:hover img {
+    opacity: 1;
+}
+
+/* ↑ここまで削除ボタンについてのCSS */
+
 
 .post-block li {
     list-style: none;
@@ -149,6 +192,37 @@ header {
     margin-bottom: 10px;
 }
 
+/* 投稿の編集（モーダル） */
+.edit-modal {
+    margin: 0 auto;
+    /*padding: 40px;*/
+}
+
+.modal {
+    display: none;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.modal__bg {
+    background: rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+
+.modal__content {
+    background: #fff;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+}
+
 
 /* main content */
 #row {
@@ -163,4 +237,9 @@ header {
 #side-bar {
     flex: 0 0 19%;
     border-left: 1px solid #727272;
+}
+
+/* プロフィール編集 */
+.edit-profile {
+    display: block;
 }

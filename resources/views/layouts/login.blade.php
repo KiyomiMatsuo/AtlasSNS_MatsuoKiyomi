@@ -26,17 +26,19 @@
     <!--Bootstrap（js）を反映させる記述-->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/login.js') }}"></script>
 </head>
 <body>
     <header>
         <div id = "head">
-        <h1><a href="/top"><img class="atlas-logo" src="images/atlas.png"></a></h1>
-            <div id="profile" class="position-absolute top-0 end-0">
+        <h1  class="atlas-logo"><a href="/top"><img src="images/atlas.png"></a></h1>
+            <div id="profile">
                 <div id="">
-                    <p>さん<button type="button" class="menu-btn">
-                        <span class="inn"></span>
-                    </button><img src="images/icon1.png"></p>
+                    <p>{{ Auth::user()->username }}さん
+                        <button type="button" class="menu-btn">
+                            <span class="inn"></span>
+                        </button>
+                        <img src="{{ asset('images/'.Auth::user()->images) }}" >
+                    </p>
                     <nav class="menu">
                         <ul>
                             <li><a href="/top">HOME</a></li>
@@ -54,24 +56,23 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
+                <p>{{ Auth::user()->username }}さんの</p>
                 <div>
                 <p>フォロー数</p>
                 <p>〇〇名</p>
                 </div>
-                <p class="btn btn-primary"><a href="">フォローリスト</a></p>
+                <p class="btn btn-primary"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
                 <p>〇〇名</p>
                 </div>
-                <p class="btn btn-primary"><a href="">フォロワーリスト</a></p>
+                <p class="btn btn-primary"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
-            <p class="btn btn-primary"><a href="">ユーザー検索</a></p>
+            <p class="btn btn-primary"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <script src="{{ asset('js/login.js') }}"></script>
 </body>
 </html>
