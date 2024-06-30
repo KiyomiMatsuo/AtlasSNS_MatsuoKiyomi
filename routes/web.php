@@ -51,8 +51,13 @@ Route::post('/post/delete', 'PostsController@delete');
 //検索ページへ移動するためのルーティング
 Route::get('/search','UsersController@search');
 
+//フォローリスト、フォロワーリストのページへ移動するためのルーティング
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
+
+//フォローする、解除のルーティング
+Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
+Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 
 Route::get('/logout','Auth\LoginController@logout');
 

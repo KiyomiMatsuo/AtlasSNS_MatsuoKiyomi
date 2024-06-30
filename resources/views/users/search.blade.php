@@ -11,10 +11,28 @@
       {{ "検索ワード：" .$keyword }}
     @endif
     @foreach ($users as $user)
-    <ul>
-        <li><img src="{{ asset('images/'.Auth::user()->images) }}" ></li>
-        <li>{{ $user->username }}</li>
-    </ul>
+    <div class="card">
+      <div class="card-header">
+        <img src="{{ asset('images/'.Auth::user()->images) }}" >
+        <div>
+          <p>{{ $user->username }}</p>
+        </div>
+        <div>
+          @if (auth()->user()->isFollowing($user->id))
+          <form action="{{ route('unfollow', ['user' => $user->id]) }}" method="POST">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <button type="submit" class="btn btn-danger">フォロー解除</button>
+          </form>
+          @else
+          <form action="{{ route('follow', ['user' => $user->id]) }}" method="POST">
+            {{ csrf_field() }}
+            <button type="submit" class="btn btn-primary">フォローする</button>
+          </form>
+          @endif
+        </div>
+      </div>
+    </div>
     @endforeach
 
 </div>
