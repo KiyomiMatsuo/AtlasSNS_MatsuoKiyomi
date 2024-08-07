@@ -40,7 +40,7 @@ class PostsController extends Controller
         $up_post = $request->input('upPost');
         // 2つ目の処理
         Post::where('id', $id)->update([
-              'post' => $up_post,
+            'post' => $up_post,
         ]);
         // 3つ目の処理
         return redirect('/top');
@@ -52,4 +52,5 @@ class PostsController extends Controller
         Post::where('post', $post)->delete();
         return redirect('/top');
     }
+
 }
