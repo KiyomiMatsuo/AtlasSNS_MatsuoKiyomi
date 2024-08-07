@@ -30,14 +30,14 @@
 <body>
     <header>
         <div id = "head">
-        <h1  class="atlas-logo"><a href="/top"><img src="images/atlas.png"></a></h1>
+        <h1  class="atlas-logo"><a href="/top"><img src="{{ asset('images/atlas.png') }}"></a></h1>
             <div id="profile">
                 <div id="">
                     <p>{{ Auth::user()->username }}さん
                         <button type="button" class="menu-btn">
                             <span class="inn"></span>
                         </button>
-                        <img src="{{ asset('images/'.Auth::user()->images) }}" >
+                        <img class="icon" src="{{ asset('images/'.Auth::user()->images) }}" >
                     </p>
                     <nav class="menu">
                         <ul>
@@ -59,12 +59,12 @@
                 <p>{{ Auth::user()->username }}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>〇〇名</p>
+                <p>{{ Auth::user()->following()->count() }}名</p>
                 </div>
                 <p class="btn btn-primary"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                <p>〇〇名</p>
+                <p>{{ Auth::user()->followed()->count() }}名</p>
                 </div>
                 <p class="btn btn-primary"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
