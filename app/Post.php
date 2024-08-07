@@ -14,4 +14,8 @@ class Post extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+
+        public function following(){
+        return $this->hasMany('App\User');
+    }
 }
