@@ -33,7 +33,13 @@ Route::post('/added', 'Auth\RegisterController@added');
 Route::group(['middleware' => 'auth'], function() {
 Route::get('/top','PostsController@index');
 
+//ログインユーザーのプロフィール編集画面に移動するためのルーティング
 Route::get('/profile','UsersController@profile');
+//プロフィールの編集処理にバリデーション処理を実装する
+Route::post('/profile','UsersController@profileValidates');
+
+//他ユーザーのプロフィールに移動するためのルーティング
+Route::get('/users/{id}/profile','UsersController@OtherProFile');
 
 //投稿フォーム画面へ移動するリンクの実装
 Route::post('/post/create','PostsController@postCreate');
@@ -52,13 +58,14 @@ Route::post('/post/delete', 'PostsController@delete');
 Route::get('/search','UsersController@search');
 
 //フォローリスト、フォロワーリストのページへ移動するためのルーティング
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+Route::get('/follow-list','FollowsController@followList');
+Route::get('/follower-list','FollowsController@followerList');
 
 //フォローする、解除のルーティング
 Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
 Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 
+//ログアウトするためのルーティング
 Route::get('/logout','Auth\LoginController@logout');
 
 });
