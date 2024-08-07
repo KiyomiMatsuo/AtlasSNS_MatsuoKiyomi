@@ -22,6 +22,9 @@ a:hover {
 }
 
 /* header */
+.icon {
+    width: 50px;
+}
 
 header {
     position: relative;
@@ -223,6 +226,9 @@ header {
     width: 60%;
 }
 
+/* プロフィール編集 */
+
+
 
 /* main content */
 #row {
@@ -237,9 +243,4 @@ header {
 #side-bar {
     flex: 0 0 19%;
     border-left: 1px solid #727272;
-}
-
-/* プロフィール編集 */
-.edit-profile {
-    display: block;
 }
