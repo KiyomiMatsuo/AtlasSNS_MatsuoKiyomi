@@ -50,7 +50,8 @@ class RegisterController extends Controller
             $validated = $request->validate([
                 'username' => ['required', 'string', 'min:2' , 'max:12'],
                 'mail' => ['required', 'string', 'email', 'min:5' , 'max:40', 'unique:users'],
-                'password' => ['required', 'string', 'alpha_num' , 'min:8', 'max:20' , 'confirmed'],
+                'password' => ['required', 'string', 'alpha_num' , 'min:8', 'max:20' ],
+                'password_confirmation' => ['required','string', 'alpha_num' , 'min:8', 'max:20' , 'confirmed']
             ]);
 
             User::create([
