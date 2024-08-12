@@ -13,7 +13,7 @@
     @foreach ($users as $user)
     <div class="card">
       <div class="card-header">
-        <img class="icon" src="{{ asset('images/'.$user->images) }}" >
+        <img class="icon" src="{{ asset('/storage/images/'.$user->images) }}" >
         <div>
           <p>{{ $user->username }}</p>
         </div>

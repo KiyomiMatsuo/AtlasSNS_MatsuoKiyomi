@@ -5,7 +5,7 @@
   <ul>
     <li>
       <div class="my-post">
-        <h2><img class="icon" src="{{ asset('images/'.$user->images) }}" ></h2>
+        <h2><img class="icon" src="{{ asset('/storage/images/'.$user->images) }}" ></h2>
         {!! Form::open(['url' => '/post/create']) !!}
         <div>
           {{ Form::textarea('post', null,['required', 'class' => 'form-control', 'placeholder' => '投稿内容を入力してください。'])}}
@@ -19,7 +19,7 @@
       <ul>
         <div class="post-block">
           <li>
-            <figure><img class="icon" src="{{ asset('images/'.$post->user->images) }}" ></figure>
+            <figure><img class="icon" src="{{ asset('/storage/images/'.$post->user->images) }}" ></figure>
             <div class="post-content">
               <div>
                 <div class="post-name">{{ $post ->user ->username }}</div>

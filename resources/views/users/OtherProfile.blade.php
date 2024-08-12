@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="">
-  <img class="icon" src="{{ asset('images/'.$users->images) }}" >
+  <img class="icon" src="{{ asset('/storage/images/'.$users->images) }}" >
   <p>ユーザー名  {{ $users->username }}</p>
   <p>自己紹介  {{ $users->bio }}</p>
 </div>

@@ -37,7 +37,7 @@
                         <button type="button" class="menu-btn">
                             <span class="inn"></span>
                         </button>
-                        <img class="icon" src="{{ asset('images/'.Auth::user()->images) }}" >
+                        <img class="icon" src="{{ asset('/storage/images/'.Auth::user()->images) }}" >
                     </p>
                     <nav class="menu">
                         <ul>
