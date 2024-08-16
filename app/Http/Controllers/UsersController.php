@@ -55,12 +55,11 @@ class UsersController extends Controller
             $filename = $request->icon_image->getClientOriginalName();
             //（$filePath storeAs に新しいプロフィール画像を入れて）
             $filePath = $request->icon_image->storeAs('products', $filename, 'public');
-            //（$image storageにある $filePath のものを入れる）
+            //（$image には storageにある $filePath のものを入れる）
             $image = '/storage/' . $filePath;
-        }
-        else{
-            //新しく画像を登録しないなら、ログインユーザーの画像を表示する
-            $filename = Auth::user()->images;
+            }else{
+                //新しく画像を登録しないなら、ログインユーザーの画像を表示する
+                $filename = Auth::user()->images;
         }
 
         User::where('id',$id)->update([
@@ -120,8 +119,6 @@ class UsersController extends Controller
             return back();
         }
     }
-
-
 
 
 }
