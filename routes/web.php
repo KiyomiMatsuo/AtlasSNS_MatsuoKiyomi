@@ -35,6 +35,8 @@ Route::get('/top','PostsController@index');
 
 //ログインユーザーのプロフィール編集画面に移動するためのルーティング
 Route::get('/profile','UsersController@profile');
+//プロフィールの更新処理
+Route::post('/profile/update','UsersController@update');
 //プロフィールの編集処理にバリデーション処理を実装する
 Route::post('/profile','UsersController@profileValidates');
 
