@@ -48,9 +48,22 @@ class RegisterController extends Controller
 
             //↓ユーザーの新規登録処理にバリデーション処理を実装
             $validated = $request->validate([
-                'username' => ['required', 'string', 'min:2' , 'max:12'],
+                'username' => ['required', 'string', 'between:2,12'],
                 'mail' => ['required', 'string', 'unique:users', 'email', 'min:5' , 'max:40', 'unique:users'],
-                'password' => ['required', 'string', 'alpha_num' , 'min:8', 'max:20' ,'confirmed']
+                'password' => ['required', 'string', 'alpha_num' , 'min:8', 'max:20' ,'confirmed'],
+            ],[
+                'username.required' => 'ユーザー名は必須です',
+                'username.between' => 'ユーザー名は2文字以上,12文字以内で入力してください',
+                'mail.required' => 'メールアドレスは必須です',
+                'mail.between' => 'メールアドレスは5文字以上,40文字以内で入力してください',
+                'mail.unique' => 'このメールアドレスは既に使用されています',
+                'password.required' => 'パスワードは必須です',
+                'password.alpha_num' => '英数字で入力してください',
+                'password.between' => 'パスワードは8文字以上,20文字以内で入力してください',
+                'password_confirmation.required' => 'パスワード確認は必須です',
+                'password_confirmation.alpha_num' => '英数字で入力してください',
+                'password_confirmation.between' => 'パスワード確認は8文字以上,20文字以内で入力してください',
+                'password_confirmation.confirmed' => 'パスワードと一致していません',
             ]);
 
             User::create([
