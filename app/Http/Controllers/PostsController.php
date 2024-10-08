@@ -10,14 +10,21 @@ use App\Post;
 class PostsController extends Controller
 {
     public function index(){
-        $posts = Post::get();
+        $posts = Post::latest()->get();
         $user = Auth::user();
         return view('posts.index',['posts'=>$posts,'user'=>$user]);
     }
 
     //投稿の処理
     public function postCreate(Request $request){
-        $post = $request->post;
+        $request->validate([
+            'post'=>['required', 'between:1,150'],
+        ],[
+            'post.required' => '投稿は必須です',
+            'post.between' => '投稿は1文字以上,150文字以内で入力してください',
+        ]);
+
+        $post = $request->input('post');
 
         Post::create([               //新しい投稿に必要なカラムを入れる
             'post' => $post,         //postの中に変数$post

@@ -24,22 +24,22 @@ class UsersController extends Controller
             'password' => ['required', 'string', 'alpha_num' , 'between:8,20', 'confirmed'],
             'bio' => ['max:150'],
             'icon_image' => ['file', 'image' , 'mimes:jpg,png,bmp,gif,svg' ],
-        // ],
-        // [
-        //     'username.required' => 'ユーザー名は必須です',
-        //     'username.between' => 'ユーザー名は2文字以上,12文字以内で入力してください',
-        //     'mail.required' => 'メールアドレスは必須です',
-        //     'mail.between' => 'メールアドレスは5文字以上,40文字以内で入力してください',
-        //     'mail.unique' => 'このメールアドレスは既に使用されています',
-        //     'password.required' => 'パスワードは必須です',
-        //     'password.alpha_num' => '英数字で入力してください',
-        //     'password.between' => 'パスワードは8文字以上,20文字以内で入力してください',
-        //     'password_confirmation.required' => 'パスワード確認は必須です',
-        //     'password_confirmation.alpha_num' => '英数字で入力してください',
-        //     'password_confirmation.between' => 'パスワード確認は8文字以上,20文字以内で入力してください',
-        //     'password_confirmation.confirmed' => 'パスワードと一致していません',
-        //     'bio.max' => '150文字以内で入力してください',
-        //     'icon_image.mimes' => '指定したファイルは使用できません',
+        ],
+        [
+            'username.required' => 'ユーザー名は必須です',
+            'username.between' => 'ユーザー名は2文字以上,12文字以内で入力してください',
+            'mail.required' => 'メールアドレスは必須です',
+            'mail.between' => 'メールアドレスは5文字以上,40文字以内で入力してください',
+            'mail.unique' => 'このメールアドレスは既に使用されています',
+            'password.required' => 'パスワードは必須です',
+            'password.alpha_num' => '英数字で入力してください',
+            'password.between' => 'パスワードは8文字以上,20文字以内で入力してください',
+            'password_confirmation.required' => 'パスワード確認は必須です',
+            'password_confirmation.alpha_num' => '英数字で入力してください',
+            'password_confirmation.between' => 'パスワード確認は8文字以上,20文字以内で入力してください',
+            'password_confirmation.confirmed' => 'パスワードと一致していません',
+            'bio.max' => '150文字以内で入力してください',
+            'icon_image.mimes' => '指定したファイルは使用できません',
         ]);
 
         $id = $request->input('id');
@@ -77,7 +77,7 @@ class UsersController extends Controller
         //ユーザーの情報を取得する
         $users = User::where('id',$id)->first();
         //投稿を取得する
-        $posts = Post::with('user')->where('user_id', $id)->get();
+        $posts = Post::with('user')->where('user_id', $id)->latest()->get();
         return view('users.OtherProfile',compact('users','posts'));
     }
 
