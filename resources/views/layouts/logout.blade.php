@@ -29,9 +29,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="Atlas">
+  <div class="login-back">
     <header>
-      <h1>
+      <h1 class="atlas-logo">
         <img class="logo" src="images/atlas.png">
       </h1>
       <p class="sns">Social Network Service</p>
@@ -39,8 +39,8 @@
     <div id="container">
       @yield('content')
     </div>
+    <script src="JavaScriptファイルのURL"></script>
+    <script src="JavaScriptファイルのURL"></script>
   </div>
-  <script src="JavaScriptファイルのURL"></script>
-  <script src="JavaScriptファイルのURL"></script>
 </body>
 </html>

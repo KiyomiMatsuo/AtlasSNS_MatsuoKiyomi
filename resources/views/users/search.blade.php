@@ -1,23 +1,25 @@
 @extends('layouts.login')
 
 @section('content')
-<div class="search">
-  <form action="#" id="form">
+<div>
+  <form action="#" class="search">
       @csrf
-      <input type="text" name="keyword" placeholder="ユーザー名">
+      <input class="search-form" type="text" name="keyword" placeholder="ユーザー名">
       <button type="submit"><img class="search-btn" src="images/search.png"></button>
-    </form>
-    @if($keyword)
-      {{ "検索ワード：" .$keyword }}
-    @endif
+
+      @if($keyword)
+      <p class="search-key">{{ "検索ワード：" .$keyword }}</p>
+      @endif
+  </form>
+
     @foreach ($users as $user)
-    <div class="card">
-      <div class="card-header">
-        <img class="icon" src="{{ asset('/storage/images/'.$user->images) }}" >
-        <div>
+    <div>
+      <div class="search-list">
+        <img class="icon profile-icon" src="{{ asset('/storage/images/'.$user->images) }}" >
+        <div class="search-name">
           <p>{{ $user->username }}</p>
         </div>
-        <div>
+        <div class="follow-btn">
           @if (auth()->user()->isFollowing($user->id))
           <form action="{{ route('unfollow', ['user' => $user->id]) }}" method="POST">
             {{ csrf_field() }}

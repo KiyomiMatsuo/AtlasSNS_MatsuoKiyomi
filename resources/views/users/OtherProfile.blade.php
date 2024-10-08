@@ -2,41 +2,55 @@
 
 @section('content')
 
-<div class="">
-  <img class="icon" src="{{ asset('/storage/images/'.$users->images) }}" >
-  <p>ユーザー名  {{ $users->username }}</p>
-  <p>自己紹介  {{ $users->bio }}</p>
+<div class="other-profile">
+  <figure><img class="icon" src="{{ asset('/storage/images/'.$users->images) }}" ></figure>
+  <dl>
+    <div class="other-title">
+      <dt>ユーザー名</dt>
+      <dd>{{ $users->username }}</dd>
+    </div>
+    <div class="other-description">
+      <dt>自己紹介</dt>
+      <dd>{{ $users->bio }}</dd>
+    </div>
+  </dl>
+  <div class="follow-btn other">
+    @if (auth()->user()->isFollowing($users->id))
+    <form action="{{ route('unfollow', ['user' => $users->id]) }}" method="POST">
+      {{ csrf_field() }}
+      {{ method_field('DELETE') }}
+      <button type="submit" class="btn btn-danger">フォロー解除</button>
+    </form>
+    @else
+    <form action="{{ route('follow', ['user' => $users->id]) }}" method="POST">
+      {{ csrf_field() }}
+      <button type="submit" class="btn btn-primary">フォローする</button>
+    </form>
+    @endif
+  </div>
 </div>
 
-<div class="">
-  @if (auth()->user()->isFollowing($users->id))
-  <form action="{{ route('unfollow', ['user' => $users->id]) }}" method="POST">
-    {{ csrf_field() }}
-    {{ method_field('DELETE') }}
-    <button type="submit" class="btn btn-danger">フォロー解除</button>
-  </form>
-  @else
-  <form action="{{ route('follow', ['user' => $users->id]) }}" method="POST">
-    {{ csrf_field() }}
-    <button type="submit" class="btn btn-primary">フォローする</button>
-  </form>
-  @endif
-</div>
-
-<div class="">
-  @if($posts->isEmpty())
-  <p>投稿がありません</p>
-  @else
-  @foreach($posts as $post)
-  <ul>
+@if($posts->isEmpty())
+<p class="no-post">投稿がありません</p>
+@else
+<div>
+@foreach($posts as $post)
+<ul>
+  <div class="post-block">
     <li>
-      <div>{{ $post -> post }}</div>
-      <div>{{ $post -> created_at }}</div>
+      <figure><img class="icon" src="{{ asset('/storage/images/'.$users->images) }}" ></figure>
+      <div class="post-content">
+        <div>
+          <span class="post-name">{{ $post ->user ->username }}</span>
+          <span>{{ substr( $post -> created_at, 0, 16) }}</span>
+        </div>
+        <div>{{ $post -> post }}</div>
+      </div>
     </li>
   </ul>
   @endforeach
-  @endif
 </div>
+  @endif
 
 
 @endsection

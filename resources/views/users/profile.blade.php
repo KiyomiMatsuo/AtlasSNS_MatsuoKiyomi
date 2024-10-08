@@ -1,6 +1,5 @@
 @extends('layouts.login')
 
-@section('content')
 
 @if($errors->any())
 <div class="alert alert-danger">
@@ -15,45 +14,46 @@
 {!! Form::open(['url' => '/profile/update','enctype' => 'multipart/form-data']) !!}
 {{ Form::hidden('id',Auth::id()) }}
 
+@section('content')
+<div class="profile-form">
+  <img class="icon profile-icon" src="{{ asset('/storage/images/'.Auth::user()->images) }}" >
+  <div class="edit-profile">
+    <div class="update-block">
+    {{ Form::label('username','ユーザー名',['class' => 'form-text']) }}
+    {{ Form::text('username',Auth::user()->username,['class' => 'form-name']) }}
+    </div>
 
-<div class="edit-profile">
-  <img class="icon" src="{{ asset('/storage/images/'.Auth::user()->images) }}" >
-  <div>
-  {{ Form::label('ユーザー名') }}
-  {{ Form::text('username',Auth::user()->username,['class' => 'input']) }}
+    <div class="update-block">
+    {{ Form::label('mail','メールアドレス',['class' => 'form-text']) }}
+    {{ Form::text('mail',Auth::user()->mail,['class' => 'form-mail']) }}
+    </div>
+
+    <div class="update-block">
+    {{ Form::label('password','パスワード',['class' => 'form-text']) }}
+    {{ Form::password('password',['class' => 'form-pass']) }}
+    </div>
+
+    <div class="update-block">
+    {{ Form::label('password_confirmation','パスワード確認',['class' => 'form-text']) }}
+    {{ Form::password('password_confirmation',['class' => 'form-pass-con']) }}
+    </div>
+
+    <div class="update-block">
+    {{ Form::label('bio','自己紹介',['class' =>'form-text']) }}
+    {{ Form::text('bio',Auth::user()->bio,['class' => 'form-bio']) }}
+    </div>
+
+    <div class="update-block file">
+    {{ Form::label('icon_image','アイコン画像',['class' =>'form-text']) }}
+    {{ Form::file('icon_image',null,['class' => 'form-icon']) }}
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-danger">更新</button>
+    </div>
+
+    {!! Form::close() !!}
+
   </div>
-
-  <div>
-  {{ Form::label('メールアドレス') }}
-  {{ Form::text('mail',Auth::user()->mail,['class' => 'input']) }}
-  </div>
-
-  <div>
-  {{ Form::label('パスワード') }}
-  {{ Form::password('password',['class' => 'input']) }}
-  </div>
-
-  <div>
-  {{ Form::label('パスワード確認') }}
-  {{ Form::password('password_confirmation',['class' => 'input']) }}
-  </div>
-
-  <div>
-  {{ Form::label('自己紹介') }}
-  {{ Form::text('bio',Auth::user()->bio,['class' => 'input']) }}
-  </div>
-
-  <div>
-  {{ Form::label('アイコン画像') }}
-  {{ Form::file('icon_image',null,['class' => 'input']) }}
-  </div>
-
-  <button type="submit" class="btn btn-danger">更新</button>
-  </a>
-
-  {!! Form::close() !!}
-
 </div>
-
-
 @endsection

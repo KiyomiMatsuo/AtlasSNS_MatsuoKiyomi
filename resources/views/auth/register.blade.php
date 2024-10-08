@@ -17,21 +17,31 @@
 
 <h2>新規ユーザー登録</h2>
 
+<div class="login-block">
 {{ Form::label('ユーザー名') }}
-{{ Form::text('username',null,['class' => 'input']) }}
+{{ Form::text('username',null,['class' => 'form-name']) }}
+</div>
 
+<div class="login-block">
 {{ Form::label('メールアドレス') }}
-{{ Form::text('mail',null,['class' => 'input']) }}
+{{ Form::text('mail',null,['class' => 'form-mail']) }}
+</div>
 
+<div class="login-block">
 {{ Form::label('パスワード') }}
-{{ Form::text('password',null,['class' => 'input']) }}
+{{ Form::password('password',['class' => 'form-pass']) }}
+</div>
 
+<div class="login-block">
 {{ Form::label('パスワード確認') }}
-{{ Form::text('password_confirmation',null,['class' => 'input']) }}
+{{ Form::password('password_confirmation',['class' => 'form-pass-con']) }}
+</div>
 
-{{ Form::submit('登録') }}
+<div class="text-right">
+  {{ Form::submit('新規登録',['class'=>'btn btn-danger']) }}
+</div>
 
-<p><a href="/login">ログイン画面へ戻る</a></p>
+<p class="log-b"><a href="/login">ログイン画面へ戻る</a></p>
 
 {!! Form::close() !!}
 
