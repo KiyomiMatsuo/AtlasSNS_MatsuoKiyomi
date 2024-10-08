@@ -355,21 +355,22 @@ header {
 }
 
 .other-profile dl {
-    display: flex;
     width: 850px;
 }
 
 .other-profile dt {
     margin-bottom: 30px;
-}
-
-.other-title {
-    margin-top: 10px;
     width: 200px;
 }
 
-.other-description {
+.other-name {
     margin-top: 10px;
+    display: flex;
+}
+
+.other-bio {
+    margin-top: 10px;
+    display: flex;
 }
 
 .other-text dt {

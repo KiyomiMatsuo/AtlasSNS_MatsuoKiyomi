@@ -5,11 +5,11 @@
 <div class="other-profile">
   <figure><img class="icon" src="{{ asset('/storage/images/'.$users->images) }}" ></figure>
   <dl>
-    <div class="other-title">
+    <div class="other-name">
       <dt>ユーザー名</dt>
       <dd>{{ $users->username }}</dd>
     </div>
-    <div class="other-description">
+    <div class="other-bio">
       <dt>自己紹介</dt>
       <dd>{{ $users->bio }}</dd>
     </div>
