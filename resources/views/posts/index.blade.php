@@ -37,6 +37,7 @@
                 <span>{{ substr( $post -> created_at, 0, 16) }}</span>
               </div>
               <div>{{ $post -> post }}</div>
+              @if(Auth::id() === $post->user->id)
               <div class="edit-modal">
                 <!-- 投稿の編集ボタン -->
                 <a class="js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}">
@@ -52,6 +53,7 @@
                   </a>
                 </div>
               </div>
+              @endif
             </div>
           </li>
         </div>
