@@ -30,7 +30,7 @@
       <ul>
         <div class="post-block">
           <li>
-            <figure><img class="icon" src="{{ asset('images/'.$post->user->images) }}" ></figure>
+            <figure><img class="icon" src="{{ asset('/storage/images/'.$post->user->images) }}" ></figure>
             <div class="post-content">
               <div>
                 <span class="post-name">{{ $post ->user ->username }}</span>
