@@ -43,10 +43,10 @@ class PostsController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'post'=>['required', 'between:1,150'],
+            'upPost'=>['required', 'between:1,150'],
         ],[
-            'post.required' => '投稿は必須です',
-            'post.between' => '投稿は1文字以上,150文字以内で入力してください',
+            'upPost.required' => '投稿は必須です',
+            'upPost.between' => '投稿は1文字以上,150文字以内で入力してください',
         ]);
 
         // 1つ目の処理
