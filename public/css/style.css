@@ -402,6 +402,13 @@ header {
     border-bottom: 7px solid #DDDDDD
 }
 
+.follow-list-icon,
+.follower-list-icon {
+    display: flex;
+    flex-wrap: wrap;
+    width: 750px;
+}
+
 .follower-name,
 .follow-name {
     font-size: 1.5rem;

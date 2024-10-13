@@ -3,11 +3,13 @@
 @section('content')
 <div class="follower-list">
   <p class="follower-name">フォロワーリスト</p>
-  @foreach($followed as $followed)
-  <a href="/users/{{ $followed -> id }}/profile">
-    <img class="icon follower" src="{{ asset('/storage/images/'.$followed->images) }}" >
-  </a>
-  @endforeach
+  <div class="follower-list-icon">
+    @foreach($followed as $followed)
+    <a href="/users/{{ $followed -> id }}/profile">
+      <img class="icon follower" src="{{ asset('/storage/images/'.$followed->images) }}" >
+    </a>
+    @endforeach
+  </div>
 </div>
 
 <div>
