@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use App\User;
 use App\Follow;
 use App\Post;
@@ -18,9 +19,10 @@ class UsersController extends Controller
     //プロフィール編集について
     public function update(Request $request){
         //プロフィール編集のバリデーション
+
         $request->validate([
             'username' => ['required', 'string', 'between:2,12'],
-            'mail' => ['required', 'string', 'unique:users', 'email', 'between:5,40', 'unique:users'],
+            'mail' => ['required', 'string', Rule::unique('users')->ignore( Auth::user()->id), 'email', 'between:5,40'],
             'password' => ['required', 'string', 'alpha_num' , 'between:8,20', 'confirmed'],
             'bio' => ['max:150'],
             'icon_image' => ['file', 'image' , 'mimes:jpg,png,bmp,gif,svg' ],
@@ -54,7 +56,7 @@ class UsersController extends Controller
             //（$filename getClientOriginalName でオリジナルネームをつけて）
             $filename = $request->icon_image->getClientOriginalName();
             //（$filePath storeAs に新しいプロフィール画像を入れて）
-            $filePath = $request->icon_image->storeAs('products', $filename, 'public');
+            $filePath = $request->icon_image->storeAs('images', $filename, 'public');
             //（$image には storageにある $filePath のものを入れる）
             $image = '/storage/' . $filePath;
             }else{
@@ -87,10 +89,11 @@ class UsersController extends Controller
         $keyword = $request->input('keyword');
         // 2つ目の処理
         if(!empty($keyword)){
-            $user = User::where('username','like', '%'.$keyword.'%')->get();
+            $user = User::where('username','!=', Auth::user()->username)->
+                        where('username','like', '%'.$keyword.'%')->get();
             //dd($user);
             }else{
-            $user = User::all();
+            $user = User::where('username','!=', Auth::user()->username)->get();
         }
         // 3つ目の処理
         return view('users.search',['users'=>$user,'keyword'=>$keyword]);

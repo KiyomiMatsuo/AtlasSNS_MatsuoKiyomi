@@ -49,7 +49,7 @@ class RegisterController extends Controller
             //↓ユーザーの新規登録処理にバリデーション処理を実装
             $validated = $request->validate([
                 'username' => ['required', 'string', 'between:2,12'],
-                'mail' => ['required', 'string', 'unique:users', 'email', 'min:5' , 'max:40', 'unique:users'],
+                'mail' => ['required', 'string', Rule::unique('users')->ignore($user->id), 'email', 'min:5' , 'max:40', 'unique:users'],
                 'password' => ['required', 'string', 'alpha_num' , 'min:8', 'max:20' ,'confirmed'],
             ],[
                 'username.required' => 'ユーザー名は必須です',
