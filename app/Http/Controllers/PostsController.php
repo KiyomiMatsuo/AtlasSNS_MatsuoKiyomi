@@ -42,6 +42,13 @@ class PostsController extends Controller
     //更新処理をするための実装
     public function update(Request $request)
     {
+        $request->validate([
+            'post'=>['required', 'between:1,150'],
+        ],[
+            'post.required' => '投稿は必須です',
+            'post.between' => '投稿は1文字以上,150文字以内で入力してください',
+        ]);
+
         // 1つ目の処理
         $id = $request->input('id');
         $up_post = $request->input('upPost');
